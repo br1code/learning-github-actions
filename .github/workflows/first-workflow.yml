@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: Print greeting
-        run: echo "Hello friend"
+        run: |
+          echo "Hello friend"
+          echo "This is another line"
+          echo "And another one"
+
       - name: Print goodbye
-        run: echo "Bye!"
+        run: |
+          echo "Bye!"
+          echo "See you later"
