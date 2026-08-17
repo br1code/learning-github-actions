@@ -1,6 +1,6 @@
 name: Sample Node App - Main
 
-on: [push, workflow_dispatch, pull_request]
+on: [push, workflow_dispatch, pull_request] # test
 
 defaults:
   run:
