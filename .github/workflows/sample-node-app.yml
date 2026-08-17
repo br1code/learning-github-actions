@@ -2,6 +2,10 @@ name: Main
 
 on: [push, workflow_dispatch]
 
+defaults:
+  run:
+    working-directory: sample-node-app
+
 jobs:
   test:
     runs-on: ubuntu-slim
