@@ -1,6 +1,13 @@
 name: Sample Node App - Main
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 defaults:
   run:
@@ -24,9 +31,33 @@ jobs:
       - name: Run tests
         run: npm test
 
-  deploy:
+  build:
     runs-on: ubuntu-slim
     needs: test
+    steps:
+      - name: Get code
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-files
+          path: sample-node-app/dist
+
+  deploy:
+    runs-on: ubuntu-slim
+    needs: build
     steps:
       - name: Get code
         uses: actions/checkout@v7
