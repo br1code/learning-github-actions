@@ -59,19 +59,14 @@ jobs:
     runs-on: ubuntu-slim
     needs: build
     steps:
-      - name: Get code
-        uses: actions/checkout@v7
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
+      - name: Get build artifacts
+        uses: actions/download-artifact@v7
         with:
-          node-version: 24
+          name: dist-files
+          path: sample-node-app/dist
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
+      - name: Output build artifacts
+        run: ls -l sample-node-app/dist
 
       - name: Deploy
         run: echo "Deploying ..." # for learning purposes
