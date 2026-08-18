@@ -66,7 +66,7 @@ jobs:
           path: sample-node-app/dist
 
       - name: Output build artifacts
-        run: ls -l sample-node-app/dist
+        run: ls -l dist
 
       - name: Deploy
         run: echo "Deploying ..." # for learning purposes
